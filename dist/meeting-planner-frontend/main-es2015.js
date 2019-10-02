@@ -1621,7 +1621,10 @@ __webpack_require__.r(__webpack_exports__);
 let MeetingService = class MeetingService {
     constructor(http) {
         this.http = http;
-        this.url = '/api/v1/users';
+        //for localhost
+        // private url = 'http://localhost:4001/api/v1/users';
+        //for aws
+        this.url = "/api/v1/users";
         //function to get data from cookies
         this.getUserInfoInLocalStorage = () => {
             return JSON.parse(localStorage.getItem('userInfo'));
@@ -1792,7 +1795,7 @@ __webpack_require__.r(__webpack_exports__);
 
 let SocketService = class SocketService {
     constructor() {
-        this.url = "http://13.233.65.245:4001";
+        this.url = "http://13.234.217.245:4001";
         this.verifyUser = (authToken) => {
             this.socket.emit('set-user', authToken);
             return rxjs__WEBPACK_IMPORTED_MODULE_3__["Observable"].create((observer) => {
