@@ -1,0 +1,106 @@
+<div class="page">
+  <div class="row p-0 m-0 im ">
+
+    <div class="col-sm"></div>
+    <div class="sides">
+
+      <div class="col-sm p-5">
+        <div class="head">
+          <h2 style="color: aqua;text-align: center">Scheduler</h2>
+
+
+          <h1 style="text-align: center"><img src="assets/log.png" class="log"></h1>
+        </div>
+        <h3 class="heading">Sign-up</h3>
+
+        <br>
+
+        <span>FirstName: </span>
+
+        <label for="inputFirstName" class="sr-only">FirstName</label>
+
+        <input type="text" id="inputFirstName" class="form-control" [(ngModel)]="firstName" name="first"
+          placeholder="First Name" required autofocus>
+
+        <br>
+
+        <span>LastName: </span>
+
+        <label for="inputLastName" class="sr-only">LastName</label>
+
+        <input type="text" id="inputLastName" class="form-control" [(ngModel)]="lastName" placeholder="Last Name"
+          name="last" required>
+
+        <br>
+
+        <span>Country: </span>
+
+        <label for="inputLastName" class="sr-only">Country</label>
+
+        <select class="form-control" (change)="onChange($event)">
+          <option selected [value]="'none'">Choose your country</option>
+          <option *ngFor="let country of countries | keyvalue"  [value]="country.key">{{country.value}}</option>
+        </select>
+        <br>
+
+
+        <span>Mobile: </span>
+
+        <label for="inputMobile" class="sr-only">Mobile</label>
+
+        <div class="row">
+
+          <div class="col-6 col-sm-5 col-md-4 col-lg-4">
+            <div class="form-control">{{ce}}</div>
+          </div>
+
+          <div class="col-6 col-sm-7 col-md-8 col-lg-8">
+            <input type="number" id="inputMobile" class="form-control" name="number" [(ngModel)]="mobileNumber"
+              placeholder="Mobile number" required>
+          </div>
+
+        </div>
+        <br>
+
+        <span>Email: </span>
+
+        <label for="inputEmail" class="sr-only">Email address</label>
+
+        <input type="email" id="inputEmail" class="form-control" name="mail" [(ngModel)]="email"
+          placeholder="Email address" required>
+
+        <br>
+
+        <span>Password: </span>
+
+        <label for="inputPassword" class="sr-only">Password</label>
+
+        <input type="password" id="inputPassword" class="form-control" [(ngModel)]="password" name="pass"
+          placeholder="Password" required>
+
+        <br>
+
+        <span>Account type: </span>
+
+        <label for="inputLastName" class="sr-only">Country</label>
+
+        <select [(ngModel)]="isAdmin" name="isAdmin" id="isAdmin" class="form-control">
+          <option selected>Choose your account type</option>
+          <option [ngValue]="false">User</option>
+          <option [ngValue]="true">Admin</option>
+        </select>
+        <br>
+
+
+        <button class="btn btn-lg btn-primary btn-block" type="submit" (click)="signupFunction()">Sign Up</button>
+
+        <br>
+        <span>Already have an account?<a [routerLink]="['/login']">Log in</a> </span>
+      </div>
+
+
+    </div>
+
+    <div class="col-sm"></div>
+  </div>
+</div>

@@ -1,0 +1,119 @@
+<nav class="navbar navbar-expand-md navbar-light " style="background-color: aqua">
+
+  <img src="assets/log.png" class="logo">&nbsp; &nbsp;
+  <h5><b>SCHEDULER</b></h5>
+
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+    aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+
+    <span class="navbar-toggler-icon"></span>
+
+  </button>
+
+  <div class="collapse navbar-collapse" id="navbarSupportedContent">
+
+    <ul class="navbar-nav mr-auto">
+
+    </ul>
+    <button class="btn btn-outline-success my-2 my-sm-0 blue" type="submit" (click)="logout()">LogOut</button>
+
+  </div>
+
+</nav>
+
+<div *ngIf="html==false">working</div>
+
+<br>
+<div>
+  <marquee behavior="scroll" direction="left" scrollamount="7">
+    <h3>Welcome {{userName}} ...Check your schedule</h3>
+  </marquee>
+</div>
+<br>
+<div class="page">
+  <div class="row text-center">
+    <div class="col-md-4">
+      <div class="btn-group">
+        <button class="btn btn-primary" (click)="decrement()" [disabled]="prevBtnDisabled">
+          Previous
+        </button>
+
+        <div class="btn btn-outline-secondary" mwlCalendarToday [(viewDate)]="viewDate">
+          Today
+        </div>
+
+        <button class="btn btn-primary" (click)="increment()" [disabled]="nextBtnDisabled">
+          Next
+        </button>
+      </div>
+    </div>
+    <div class="col-md-4">
+      <h3>{{ viewDate | calendarDate:(view + 'ViewTitle'):'en' }}</h3>
+    </div>
+    <div class="col-md-4">
+      <div class="btn-group">
+        <div class="btn btn-primary" (click)="setView(CalendarView.Month)"
+          [class.active]="view === 'CalendarView.Month'">
+          Month
+        </div>
+        <div class="btn btn-primary" (click)="setView(CalendarView.Week)" [class.active]="view === 'CalendarView.Week'">
+          Week
+        </div>
+        <div class="btn btn-primary" (click)="setView(CalendarView.Day)" [class.active]="view === 'CalendarView.Day'">
+          Day
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<br />
+
+<div [ngSwitch]="view">
+  <mwl-calendar-month-view *ngSwitchCase="CalendarView.Month" [viewDate]="viewDate" [events]="events"
+    [refresh]="refresh" [activeDayIsOpen]="activeDayIsOpen" (dayClicked)="dayClicked($event.day)"
+    (eventClicked)="handleEvent('Clicked', $event.event)" (eventTimesChanged)="eventTimesChanged($event)">
+  </mwl-calendar-month-view>
+  <mwl-calendar-week-view *ngSwitchCase="CalendarView.Week" [viewDate]="viewDate" [events]="events" [refresh]="refresh"
+    (eventClicked)="handleEvent('Clicked', $event.event)" (eventTimesChanged)="eventTimesChanged($event)">
+  </mwl-calendar-week-view>
+  <mwl-calendar-day-view *ngSwitchCase="CalendarView.Day" [viewDate]="viewDate" [events]="events" [refresh]="refresh"
+    (eventClicked)="handleEvent('Clicked', $event.event)" (eventClicked)="eventClicked($event)"
+    (eventTimesChanged)="eventTimesChanged($event)">
+  </mwl-calendar-day-view>
+</div>
+
+
+<br /><br /><br />
+
+
+<h3>
+  All Events
+</h3>
+<p class="small">**click the event to view details</p>
+<div class="table-responsive">
+  <table class="table table-bordered">
+    <thead>
+      <tr>
+        <th class="font">Title</th>
+        <th class="font">Starts at</th>
+        <th class="font">Ends at</th>
+      </tr>
+    </thead>
+
+    <tbody>
+      <tr *ngFor="let event of events| paginate: { itemsPerPage: count, currentPage: p }"
+        routerLink="/{{event.eventId}}/view" class="hover">
+        <td class="font">
+          {{event.title}}
+        </td>
+        <td class="font">
+          <div>{{event.start}}</div>
+        </td>
+        <td class="font">
+          {{event.end}}
+        </td>
+      </tr>
+    </tbody>
+  </table>
+  <pagination-controls (pageChange)="p = $event"></pagination-controls>
+</div>

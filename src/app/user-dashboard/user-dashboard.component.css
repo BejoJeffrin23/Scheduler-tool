@@ -1,0 +1,22 @@
+.small{
+    font-size: x-small
+}
+.font{
+    text-align: center;
+}
+.page{overflow-y: scroll;
+overflow-x: hidden;
+}
+.logo{
+    border-radius: 100%;
+    height: 40px;
+    width: 40px;
+}
+.hover :hover{
+    background-color: aqua
+}
+
+.blue{
+    background-color: #008CBA;
+    color: white
+}

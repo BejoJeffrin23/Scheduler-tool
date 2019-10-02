@@ -1,0 +1,99 @@
+<nav class="navbar navbar-expand-md navbar-light " style="background-color: aqua">
+
+  <img src="assets/log.png" class="logo">&nbsp; &nbsp;<h5><b>SCHEDULER</b></h5>
+
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+    aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+
+    <span class="navbar-toggler-icon"></span>
+
+  </button>
+
+  <div class="collapse navbar-collapse" id="navbarSupportedContent">
+
+    <ul class="navbar-nav mr-auto">
+
+      <li class="nav-item">
+
+        <a class="nav-link dash" routerLink="/{{userId}}/admindash" style="color: black">
+          Dash board
+        </a>
+
+      </li>
+
+    </ul>
+    <button class="btn btn-outline-success my-2 my-sm-0 blue" type="submit" (click)="logout()">LogOut</button>
+
+  </div>
+
+</nav>
+
+<div class="row p-0 m-0 im ">
+
+  <div class="col-sm"></div>
+  <div class="sides">
+
+    <div class="col-sm p-5">
+      <h3>Meeting planned by {{adminName}}</h3>
+      <form #eventForm="ngForm" (submit)="create()">
+        <div class="form-group">
+          <label>Title:</label>
+          <input type="text" [(ngModel)]="title" name="title" class="form-control" placeholder="Title of event"
+            required>
+        </div>
+        <div class="form-group">
+          <label>Location:</label>
+          <input type="text" [(ngModel)]="Location" name="location" class="form-control"
+            placeholder="Enter the location" required>
+        </div>
+        <div class="form-group">
+          <label>Purpose:</label>
+          <input type="text" [(ngModel)]="purpose" name="purpose" class="form-control" placeholder="Purpose of meeting"
+            required>
+        </div>
+        <div class="form-group">
+          <label for="color">Color: </label>&nbsp; &nbsp;
+          <input class="color" type="color" name="color" [(ngModel)]="color" required>
+        </div>
+        <div class="input-group">
+          <label>Start Date: &nbsp;</label>
+          <input class="form-control" placeholder="yyyy-mm-dd" name="startDate" ngbDatepicker [(ngModel)]="startDate"
+            #d="ngbDatepicker" required>
+          <div class="input-group-append">
+            <button class="btn btn-outline-secondary calendar" (click)="d.toggle()" type="button">
+              <i class="fa fa-calendar"></i>
+            </button>
+          </div>
+        </div>
+        <br>
+        <div class="form-group">
+          <label>Start Time:</label>
+          <ngb-timepicker [(ngModel)]="startTime" name="startTime" [meridian]="true" required></ngb-timepicker>
+        </div>
+        <div class="input-group">
+          <label>End Date: &nbsp;</label>
+          <input class="form-control" placeholder="yyyy-mm-dd" name="endDate" ngbDatepicker [(ngModel)]="endDate"
+            #end="ngbDatepicker" required>
+          <div class="input-group-append">
+            <button class="btn btn-outline-secondary calendar" (click)="end.toggle()" type="button">
+              <i class="fa fa-calendar"></i>
+            </button>
+          </div>
+        </div>
+        <br>
+        <div class="form-group">
+          <label>End Time:</label>
+          <ngb-timepicker [(ngModel)]="endTime" name="endTime" ngModel [meridian]="true" required></ngb-timepicker>
+        </div>
+
+        <button class="btn btn-success" [disabled]="eventForm.invalid" type="submit">Create</button>
+      </form>
+
+    </div>
+
+
+  </div>
+
+  <div class="col-sm"></div>
+</div>
+<br>

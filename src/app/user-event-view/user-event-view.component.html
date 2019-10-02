@@ -1,0 +1,83 @@
+<nav class="navbar navbar-expand-md navbar-light " style="background-color: aqua">
+
+  <img src="assets/log.png" class="logo">&nbsp; &nbsp;<h5><b>SCHEDULER</b></h5>
+
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+    aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+
+    <span class="navbar-toggler-icon"></span>
+
+  </button>
+
+  <div class="collapse navbar-collapse" id="navbarSupportedContent">
+
+    <ul class="navbar-nav mr-auto">
+
+      <li class="nav-item">
+
+        <a class="nav-link dash" routerLink="/{{userId}}/userdash" style="color: black">
+          Dash board
+        </a>
+
+      </li>
+
+    </ul>
+    <button class="btn btn-outline-success my-2 my-sm-0 blue" type="submit" (click)="logout()">LogOut</button>
+
+  </div>
+
+</nav>
+
+<div class="row p-0 m-0 im ">
+
+  <div class="col-sm"></div>
+  <div class="sides">
+
+    <div class="col-sm p-5" autofocus>
+      <h3>Meeting planned by {{event.adminName}}</h3>
+      <form>
+        <div class="form-group">
+          <label>Title:</label>
+          <div class="form-control">{{event.title}}</div>
+        </div>
+        <div class="form-group">
+          <label>Location:</label>
+          <div class="form-control">{{event.location}}</div>
+        </div>
+        <div class="form-group">
+          <label>Purpose:</label>
+          <div class="form-control">{{event.purpose}}</div>
+        </div>
+        <div class="form-group">
+          <label for="color">Color: </label>
+          <div class="color" type="color" name="color" [ngStyle]="{'background-color':color}" required></div>
+        </div>
+        <div class="form-group">
+          <label>Start Date:</label>
+          <div class="form-control">{{start}}</div>
+
+        </div>
+        <br>
+        <div class="form-group">
+          <label>Start Time:&nbsp;</label>
+          <div class="form-control">{{startHour}}:{{startMinute}} {{tpace}}</div>
+        </div>
+        <br>
+        <div class="form-group">
+          <label>End Date:</label>
+          <div class="form-control">{{end}}</div>
+        </div>
+        <br>
+        <div class="form-group">
+          <label>End Time:</label>
+          <div class="form-control">{{endHour}}:{{endMinute}} {{pace}}</div>
+        </div>
+      </form>
+
+
+    </div>
+
+  </div>
+  <div class="col-sm"></div>
+</div>
+<br>

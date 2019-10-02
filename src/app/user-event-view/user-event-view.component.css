@@ -1,0 +1,34 @@
+
+
+.sides{
+    border: 2px solid aqua;
+    margin-top: 8px;
+    border-radius: 10px;
+    width: 100%;
+    background-color: lightskyblue}
+
+    .logo{
+        border-radius: 100%;
+        height: 40px;
+        width: 40px;
+    }
+    .dash{
+        margin-left: 40px;
+    }
+    
+.blue{
+    background-color: #008CBA;
+    color: white
+}
+.color{
+    width: 200px;
+    height:25px;
+    border: 1px solid rgb(0, 81, 128);
+    margin: 20px;
+}
+
+@media screen and (min-width:768px){
+    .sides{
+        width: 50vw;
+    }
+}

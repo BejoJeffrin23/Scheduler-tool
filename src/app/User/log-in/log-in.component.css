@@ -1,0 +1,28 @@
+.page{
+    background: linear-gradient(blue,yellow,green);
+    height: 100vh;
+}
+
+.head{
+    background-color:purple;
+}
+
+.sides{
+    border: 2px solid aqua;
+    margin-top: 20px;
+    border-radius: 10px;
+    background-color: aqua;
+}
+
+.log{
+    text-align: center;
+    border-radius: 100%;
+    height: 60px;
+    width: 60px;
+}
+
+@media screen and (min-height:1024px)
+{.sides{
+height: 60vh;
+margin-top: 10vh;
+}}

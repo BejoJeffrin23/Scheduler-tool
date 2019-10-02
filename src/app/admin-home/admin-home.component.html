@@ -1,0 +1,55 @@
+<div>
+  <nav class="navbar navbar-expand-md navbar-light " style="background-color: aqua">
+
+    <img src="assets/log.png" class="logo">&nbsp; &nbsp;<h5><b>SCHEDULER</b></h5>
+
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+      aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+
+      <span class="navbar-toggler-icon"></span>
+
+    </button>
+
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+
+      <ul class="navbar-nav mr-auto">
+
+      </ul>
+      <button class="btn btn-outline-success my-2 my-sm-0 blue" type="submit" (click)="logout()">LogOut</button>
+
+    </div>
+
+  </nav>
+
+  <br>
+  <div>
+    <marquee behavior="scroll" direction="left" scrollamount="7">
+      <h3>Welcome {{userName}} ...Plan the schedules</h3>
+    </marquee>
+  </div>
+  <br>
+
+
+  <table class="table table-striped table-bordered table-dark table-hover" style="width: 100%">
+    <thead>
+      <tr>
+        <th class="font" style="width: 40%;text-align: center">Username</th>
+        <th class="font" style="width: 40%;text-align: center">Full name</th>
+        <th class="font" style="width: 20%;text-align: center"></th>
+      </tr>
+    </thead>
+    <tbody *ngFor="let x of details | paginate: { itemsPerPage: count, currentPage: p }">
+      <tr *ngIf="x.isAdmin==false">
+        <td class="font" style="width: 30%;text-align: center">{{x.userName}}</td>
+        <td class="font" style="width: 20%;text-align: center">{{x.firstName}} {{x.lastName}}</td>
+        <td class="font" style="width: 20%;text-align: center"><button
+            routerLink="/{{x.userId}}/admindash">Click</button></td>
+      </tr>
+    </tbody>
+  </table>
+
+  <div class="controller">
+    <pagination-controls (pageChange)="p = $event"></pagination-controls>
+  </div>
+
+</div>

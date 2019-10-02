@@ -1,0 +1,28 @@
+@import"~@fortawesome/fontawesome-free/css/all.css";
+.page{overflow-y: scroll;
+    overflow-x: hidden;
+    background-color: lightyellow}
+
+
+    .logo{
+        border-radius: 100%;
+        height: 40px;
+        width: 40px;
+    }
+  .check{
+      display: flex;
+      justify-content: flex-end;
+      align-items: center;
+      margin-right: 10vw;
+  }
+  .button{
+      border-radius: 100%;
+      width:60px;
+  }
+  .blue{
+    background-color: #008CBA;
+    color: white
+}
+.hover :hover{
+    background-color: aqua
+}
