@@ -8,9 +8,11 @@ import { Observable, from } from 'rxjs';
   providedIn: 'root'
 })
 export class MeetingService {
+//for localhost
+ // private url = 'http://localhost:4001/api/v1/users';
 
-  private url = '/api/v1/users';
-
+ //for aws
+private url ="/api/v1/users"
 
   constructor(
     public http: HttpClient
