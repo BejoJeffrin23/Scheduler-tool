@@ -9,8 +9,8 @@ import { Observable } from 'rxjs';
 })
 export class SocketService {
 
-  private url ="http://13.234.217.245:4001"
-  //'http://localhost:3000';
+  private url ="http://ec2-13-234-217-245.ap-south-1.compute.amazonaws.com"
+  //'http://localhost:4001';
 public socket;
 
 
