@@ -35,7 +35,6 @@ export class SignUpComponent implements OnInit {
     public socketService: SocketService) { }
 
   ngOnInit() {
-    console.log(this.isAdmin)
   }
 
 
@@ -44,11 +43,9 @@ export class SignUpComponent implements OnInit {
     let c: any
     for (c in this.Codes) {
       if (this.code == c) {
-        console.log(this.Codes[c])
         this.ce = this.Codes[c]
       }
     }
-    console.log(this.code)
   }
 
   // function to move to log-in page

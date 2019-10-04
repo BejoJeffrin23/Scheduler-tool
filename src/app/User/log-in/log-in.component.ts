@@ -52,12 +52,10 @@ export class LogInComponent implements OnInit {
       }
       this.appService.signinFunction(data)
         .subscribe((apiResponse) => {
-          console.log(apiResponse.data)
           this.toastr.success('Login success')
           if (apiResponse.status === 200) {
             this.socketService.verifyUser(apiResponse.data.authToken)
               .subscribe((data) => {
-                console.log('socket-log')
                 this.disconnectedSocket = false;
 
               });

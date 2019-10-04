@@ -41,7 +41,6 @@ private url ="/api/v1/users"
 
   //start of sign up function
   public signupFunction(data): Observable<any> {
-    console.log(data)
     const params = new HttpParams()
       .set('firstName', data.firstName)
       .set('lastName', data.lastName)

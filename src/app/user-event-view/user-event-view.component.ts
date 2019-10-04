@@ -31,6 +31,9 @@ export class UserEventViewComponent implements OnInit {
  public end:any;
  public pace:string;
  public tpace:string;
+ public month;
+ public day;
+ public html;
   constructor(public SocketService:SocketService,public toastr: ToastrService,private service: MeetingService,private route: ActivatedRoute, private router: Router, private location: Location,private config: NgbDatepickerConfig) {}
 
   ngOnInit() {
@@ -38,7 +41,6 @@ export class UserEventViewComponent implements OnInit {
 
      //socket function to notify about created event
      this.SocketService.createNotify().subscribe((data) => {
-      console.log(data)
       if (data.userId == Cookie.get('userId')) {
         this.toastr.success(`${data.adminName} has scheduled an event`)
       }
@@ -49,7 +51,6 @@ export class UserEventViewComponent implements OnInit {
     //socket function to notify about created event
 
     this.SocketService.editNotify().subscribe((data) => {
-      console.log(data)
       if (data.userId == Cookie.get('userId')) {
         this.toastr.success(`${data.adminName} has changed the scheduled event`)
       }
@@ -57,7 +58,6 @@ export class UserEventViewComponent implements OnInit {
     })
 
     this.SocketService.deleteNotify().subscribe((data) => {
-      console.log(data)
       if (data.userId == Cookie.get('userId')) {
         this.toastr.success(`${data.adminName} has cancelled a scheduled event`)
       }
@@ -68,12 +68,22 @@ export class UserEventViewComponent implements OnInit {
     this.eventId = this.route.snapshot.paramMap.get('eventId');
 
     this.service.getSingleEvent(this.eventId).subscribe( data => {
-      console.log(data)
       let x=data['data']
+      this.month = (new Date(x.start).getMonth())
+      this.day = (new Date(x.start).getDay())
       this.color=x.color
       x.start=new Date(x.start)
       x.end=new Date(x.end);
-      console.log(x.endHour)
+      this.SocketService.alarm().subscribe((data) => {
+        if (data.min + 2 == x.startMinute && data.hours == x.startHour && data.month == this.month && data.day == this.day) {
+          this.SocketService.alarmnotify(x.adminName, x.userId, x.title)
+          this.html = false;
+          setTimeout(() => {
+            this.html = true;
+          }, 10000)
+
+        }
+      })
       if(x.startHour>12){this.startHour=(x.startHour-12);this.tpace="PM"}
       else {this.startHour=x.startHour;this.tpace="AM"};
       this.startMinute=x.startMinute;
@@ -91,9 +101,7 @@ export class UserEventViewComponent implements OnInit {
 this.end=[day, month,enddate.getFullYear()].join("-");
     
       this.userId=x.userId
-      console.log(x.start.getHours())
       this.event = data['data'];
-      console.log(this.event)
       
   })
   }

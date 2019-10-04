@@ -42,7 +42,6 @@ export class EditEventComponent implements OnInit {
     this.eventId = this.route.snapshot.paramMap.get('eventId');
 
     this.service.getSingleEvent(this.eventId).subscribe( data => {
-      console.log(data)
       let x=data['data']
       this.title=x.title
       x.start=new Date(x.start)
@@ -50,9 +49,7 @@ export class EditEventComponent implements OnInit {
       this.startTime={hour:x.startHour,minute:x.startMinute}
       this.endTime={hour:x.endHour,minute:x.endMinute}
       this.userId=x.userId
-      console.log(x.start.getHours())
       this.event = data['data'];
-      console.log(this.event)
     })
   }
 
@@ -65,7 +62,6 @@ export class EditEventComponent implements OnInit {
    this.event.endHour=this.endTime.hour
    this.event.endMinute=this.endTime.minute
 
-   console.log(this.event)
     this.service.edit(this.event, this.event.eventId).subscribe(data => { 
       this.SocketService.eventEdited(Cookie.get('userName'),this.userId,this.title)
       this.appRouter.navigate([`${this.userId}/admindash`])
@@ -74,7 +70,6 @@ export class EditEventComponent implements OnInit {
       }, 1000)
     },
       error => {
-        console.log(error.errorMessage)
       })
   }
  
@@ -105,7 +100,6 @@ export class EditEventComponent implements OnInit {
   deleteEvent(eventId) {
 this.service.delete(eventId).subscribe(data=>{
   this.SocketService.eventdeleted(Cookie.get('userName'),this.userId,this.title)
-  console.log(data)
   this.toastr.success('Event deleted', 'Success')
 
 })

@@ -81,7 +81,6 @@ export class CreateEventComponent implements OnInit {
       };
     
     this.service.create(eventData).subscribe((data) => {
-      console.log(data)
       if (data.status == 200) {
         this.SocketService.eventCreated(Cookie.get('userName'), data.data.userId,data.data.title)
         this.toastr.success('Event created successfully')

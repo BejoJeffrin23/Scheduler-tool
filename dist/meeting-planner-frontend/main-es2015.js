@@ -162,7 +162,7 @@ __webpack_require__.r(__webpack_exports__);
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony default export */ __webpack_exports__["default"] = ("<nav class=\"navbar navbar-expand-md navbar-light \" style=\"background-color: aqua\">\n\n  <img src=\"assets/log.png\" class=\"logo\">&nbsp; &nbsp;<h5><b>SCHEDULER</b></h5>\n\n  <button class=\"navbar-toggler\" type=\"button\" data-toggle=\"collapse\" data-target=\"#navbarSupportedContent\"\n    aria-controls=\"navbarSupportedContent\" aria-expanded=\"false\" aria-label=\"Toggle navigation\">\n\n    <span class=\"navbar-toggler-icon\"></span>\n\n  </button>\n\n  <div class=\"collapse navbar-collapse\" id=\"navbarSupportedContent\">\n\n    <ul class=\"navbar-nav mr-auto\">\n\n      <li class=\"nav-item\">\n\n        <a class=\"nav-link dash\" routerLink=\"/{{userId}}/userdash\" style=\"color: black\">\n          Dash board\n        </a>\n\n      </li>\n\n    </ul>\n    <button class=\"btn btn-outline-success my-2 my-sm-0 blue\" type=\"submit\" (click)=\"logout()\">LogOut</button>\n\n  </div>\n\n</nav>\n\n<div class=\"row p-0 m-0 im \">\n\n  <div class=\"col-sm\"></div>\n  <div class=\"sides\">\n\n    <div class=\"col-sm p-5\" autofocus>\n      <h3>Meeting planned by {{event.adminName}}</h3>\n      <form>\n        <div class=\"form-group\">\n          <label>Title:</label>\n          <div class=\"form-control\">{{event.title}}</div>\n        </div>\n        <div class=\"form-group\">\n          <label>Location:</label>\n          <div class=\"form-control\">{{event.location}}</div>\n        </div>\n        <div class=\"form-group\">\n          <label>Purpose:</label>\n          <div class=\"form-control\">{{event.purpose}}</div>\n        </div>\n        <div class=\"form-group\">\n          <label for=\"color\">Color: </label>\n          <div class=\"color\" type=\"color\" name=\"color\" [ngStyle]=\"{'background-color':color}\" required></div>\n        </div>\n        <div class=\"form-group\">\n          <label>Start Date:</label>\n          <div class=\"form-control\">{{start}}</div>\n\n        </div>\n        <br>\n        <div class=\"form-group\">\n          <label>Start Time:&nbsp;</label>\n          <div class=\"form-control\">{{startHour}}:{{startMinute}} {{tpace}}</div>\n        </div>\n        <br>\n        <div class=\"form-group\">\n          <label>End Date:</label>\n          <div class=\"form-control\">{{end}}</div>\n        </div>\n        <br>\n        <div class=\"form-group\">\n          <label>End Time:</label>\n          <div class=\"form-control\">{{endHour}}:{{endMinute}} {{pace}}</div>\n        </div>\n\n        <button class=\"btn btn-success b\" routerLink=\"/{{userId}}/userdash\" type=\"submit\">Go back</button>\n\n\n      </form>\n\n\n    </div>\n\n  </div>\n  <div class=\"col-sm\"></div>\n</div>\n<br>");
+/* harmony default export */ __webpack_exports__["default"] = ("<nav class=\"navbar navbar-expand-md navbar-light \" style=\"background-color: aqua\">\n\n  <img src=\"assets/log.png\" class=\"logo\">&nbsp; &nbsp;<h5><b>SCHEDULER</b></h5>\n\n  <button class=\"navbar-toggler\" type=\"button\" data-toggle=\"collapse\" data-target=\"#navbarSupportedContent\"\n    aria-controls=\"navbarSupportedContent\" aria-expanded=\"false\" aria-label=\"Toggle navigation\">\n\n    <span class=\"navbar-toggler-icon\"></span>\n\n  </button>\n\n  <div class=\"collapse navbar-collapse\" id=\"navbarSupportedContent\">\n\n    <ul class=\"navbar-nav mr-auto\">\n\n      <li class=\"nav-item\">\n\n        <a class=\"nav-link dash\" routerLink=\"/{{userId}}/userdash\" style=\"color: black\">\n          Dash board\n        </a>\n\n      </li>\n\n    </ul>\n    <button class=\"btn btn-outline-success my-2 my-sm-0 blue\" type=\"submit\" (click)=\"logout()\">LogOut</button>\n\n  </div>\n\n</nav>\n\n<div *ngIf=\"html==false\">\n\n  <div class=\"alarm\">\n    The event/meeting is about to start\n    <br>\n    <button value=\"html==true\">dismiss</button>\n  </div>\n\n</div>\n\n\n<div class=\"row p-0 m-0 im \">\n\n  <div class=\"col-sm\"></div>\n  <div class=\"sides\">\n\n    <div class=\"col-sm p-5\" autofocus>\n      <h3>Meeting planned by {{event.adminName}}</h3>\n      <form>\n        <div class=\"form-group\">\n          <label>Title:</label>\n          <div class=\"form-control\">{{event.title}}</div>\n        </div>\n        <div class=\"form-group\">\n          <label>Location:</label>\n          <div class=\"form-control\">{{event.location}}</div>\n        </div>\n        <div class=\"form-group\">\n          <label>Purpose:</label>\n          <div class=\"form-control\">{{event.purpose}}</div>\n        </div>\n        <div class=\"form-group\">\n          <label for=\"color\">Color: </label>\n          <div class=\"color\" type=\"color\" name=\"color\" [ngStyle]=\"{'background-color':color}\" required></div>\n        </div>\n        <div class=\"form-group\">\n          <label>Start Date:</label>\n          <div class=\"form-control\">{{start}}</div>\n\n        </div>\n        <br>\n        <div class=\"form-group\">\n          <label>Start Time:&nbsp;</label>\n          <div class=\"form-control\">{{startHour}}:{{startMinute}} {{tpace}}</div>\n        </div>\n        <br>\n        <div class=\"form-group\">\n          <label>End Date:</label>\n          <div class=\"form-control\">{{end}}</div>\n        </div>\n        <br>\n        <div class=\"form-group\">\n          <label>End Time:</label>\n          <div class=\"form-control\">{{endHour}}:{{endMinute}} {{pace}}</div>\n        </div>\n\n        <button class=\"btn btn-success b\" routerLink=\"/{{userId}}/userdash\" type=\"submit\">Go back</button>\n\n\n      </form>\n\n\n    </div>\n\n  </div>\n  <div class=\"col-sm\"></div>\n</div>\n<br>");
 
 /***/ }),
 
@@ -543,12 +543,10 @@ let LogInComponent = class LogInComponent {
                 };
                 this.appService.signinFunction(data)
                     .subscribe((apiResponse) => {
-                    console.log(apiResponse.data);
                     this.toastr.success('Login success');
                     if (apiResponse.status === 200) {
                         this.socketService.verifyUser(apiResponse.data.authToken)
                             .subscribe((data) => {
-                            console.log('socket-log');
                             this.disconnectedSocket = false;
                         });
                         ng2_cookies_ng2_cookies__WEBPACK_IMPORTED_MODULE_3__["Cookie"].set('authToken', apiResponse.data.authToken);
@@ -726,18 +724,15 @@ let SignUpComponent = class SignUpComponent {
         };
     }
     ngOnInit() {
-        console.log(this.isAdmin);
     }
     onChange(event) {
         this.code = event.target.value;
         let c;
         for (c in this.Codes) {
             if (this.code == c) {
-                console.log(this.Codes[c]);
                 this.ce = this.Codes[c];
             }
         }
-        console.log(this.code);
     }
     //end of move to log-in function
     // Sign-up function
@@ -938,15 +933,12 @@ let AdminDashboardComponent = class AdminDashboardComponent {
     ngOnInit() {
         this.userName = ng2_cookies_ng2_cookies__WEBPACK_IMPORTED_MODULE_7__["Cookie"].get('userName');
         this.userId = this._route.snapshot.paramMap.get('userId');
-        console.log(this.viewDate);
         this.service.getEvents(this.userId).subscribe(data => {
             for (let x of data['data']) {
-                console.log(x);
                 x.start = Object(date_fns__WEBPACK_IMPORTED_MODULE_2__["startOfDay"])(new Date(x.start));
                 x.start.setHours(x.startHour, x.startMinute);
                 x.end = Object(date_fns__WEBPACK_IMPORTED_MODULE_2__["endOfDay"])(new Date(x.end));
                 x.end.setHours(x.endHour, x.endMinute);
-                console.log(x.end);
                 x.color = { primary: x.color };
                 var startdate = new Date(x.start), month = ("0" + (startdate.getMonth() + 1)).slice(-2), day = ("0" + startdate.getDate()).slice(-2);
                 this.start = [day, month, startdate.getFullYear()].join("-");
@@ -1099,7 +1091,6 @@ let AdminHomeComponent = class AdminHomeComponent {
         this.userName = ng2_cookies_ng2_cookies__WEBPACK_IMPORTED_MODULE_4__["Cookie"].get('userName');
         this.service.allUser().subscribe(data => {
             this.details = data['data'];
-            console.log(this.details);
         });
     }
 };
@@ -1423,7 +1414,6 @@ let CreateEventComponent = class CreateEventComponent {
                 purpose: this.purpose
             };
             this.service.create(eventData).subscribe((data) => {
-                console.log(data);
                 if (data.status == 200) {
                     this.SocketService.eventCreated(ng2_cookies_ng2_cookies__WEBPACK_IMPORTED_MODULE_7__["Cookie"].get('userName'), data.data.userId, data.data.title);
                     this.toastr.success('Event created successfully');
@@ -1536,7 +1526,6 @@ let EditEventComponent = class EditEventComponent {
     ngOnInit() {
         this.eventId = this.route.snapshot.paramMap.get('eventId');
         this.service.getSingleEvent(this.eventId).subscribe(data => {
-            console.log(data);
             let x = data['data'];
             this.title = x.title;
             x.start = new Date(x.start);
@@ -1544,9 +1533,7 @@ let EditEventComponent = class EditEventComponent {
             this.startTime = { hour: x.startHour, minute: x.startMinute };
             this.endTime = { hour: x.endHour, minute: x.endMinute };
             this.userId = x.userId;
-            console.log(x.start.getHours());
             this.event = data['data'];
-            console.log(this.event);
         });
     }
     editEvent() {
@@ -1554,7 +1541,6 @@ let EditEventComponent = class EditEventComponent {
         this.event.startMinute = this.startTime.minute;
         this.event.endHour = this.endTime.hour;
         this.event.endMinute = this.endTime.minute;
-        console.log(this.event);
         this.service.edit(this.event, this.event.eventId).subscribe(data => {
             this.SocketService.eventEdited(ng2_cookies_ng2_cookies__WEBPACK_IMPORTED_MODULE_7__["Cookie"].get('userName'), this.userId, this.title);
             this.appRouter.navigate([`${this.userId}/admindash`]);
@@ -1562,14 +1548,12 @@ let EditEventComponent = class EditEventComponent {
             setTimeout(() => {
             }, 1000);
         }, error => {
-            console.log(error.errorMessage);
         });
     }
     // end of log-out function
     deleteEvent(eventId) {
         this.service.delete(eventId).subscribe(data => {
             this.SocketService.eventdeleted(ng2_cookies_ng2_cookies__WEBPACK_IMPORTED_MODULE_7__["Cookie"].get('userName'), this.userId, this.title);
-            console.log(data);
             this.toastr.success('Event deleted', 'Success');
         });
     }
@@ -1644,7 +1628,6 @@ let MeetingService = class MeetingService {
     } // end of signinFunction function.
     //start of sign up function
     signupFunction(data) {
-        console.log(data);
         const params = new _angular_common_http__WEBPACK_IMPORTED_MODULE_2__["HttpParams"]()
             .set('firstName', data.firstName)
             .set('lastName', data.lastName)
@@ -1752,7 +1735,6 @@ let PlannerRouteGaurdService = class PlannerRouteGaurdService {
         this.router = router;
     }
     canActivate(route) {
-        console.log("working dude");
         if (ng2_cookies_ng2_cookies__WEBPACK_IMPORTED_MODULE_3__["Cookie"].get('authToken') === undefined || ng2_cookies_ng2_cookies__WEBPACK_IMPORTED_MODULE_3__["Cookie"].get('authToken') === '' || ng2_cookies_ng2_cookies__WEBPACK_IMPORTED_MODULE_3__["Cookie"].get('authToken') === null) {
             this.router.navigate(['/login']);
             return false;
@@ -1827,7 +1809,6 @@ let SocketService = class SocketService {
             });
         };
         this.eventEdited = (Adminname, userId, title) => {
-            console.log(Adminname);
             this.socket.emit('event-edited', Adminname, userId, title);
         };
         this.editNotify = () => {
@@ -1995,21 +1976,18 @@ let UserDashboardComponent = class UserDashboardComponent {
         this.userName = ng2_cookies_ng2_cookies__WEBPACK_IMPORTED_MODULE_9__["Cookie"].get('userName');
         //socket function to notify about created event
         this.SocketService.createNotify().subscribe((data) => {
-            console.log(data);
             if (data.userId == ng2_cookies_ng2_cookies__WEBPACK_IMPORTED_MODULE_9__["Cookie"].get('userId')) {
                 this.toastr.success(`${data.adminName} has scheduled an event ${data.title}`);
             }
         });
         //socket function to notify about edited event
         this.SocketService.editNotify().subscribe((data) => {
-            console.log(data);
             if (data.userId == ng2_cookies_ng2_cookies__WEBPACK_IMPORTED_MODULE_9__["Cookie"].get('userId')) {
                 this.toastr.success(`${data.adminName} has changed the scheduled event ${data.title}`);
             }
         });
         //socket function to notify about deleted event
         this.SocketService.deleteNotify().subscribe((data) => {
-            console.log(data);
             if (data.userId == ng2_cookies_ng2_cookies__WEBPACK_IMPORTED_MODULE_9__["Cookie"].get('userId')) {
                 this.toastr.success(`${data.adminName} has cancelled a scheduled event ${data.title}`);
             }
@@ -2019,7 +1997,6 @@ let UserDashboardComponent = class UserDashboardComponent {
             for (let x of data.data) {
                 this.month = (new Date(x.start).getMonth());
                 this.day = (new Date(x.start).getDay());
-                console.log(this.month);
                 x.start = Object(date_fns__WEBPACK_IMPORTED_MODULE_2__["startOfDay"])(new Date(x.start));
                 x.start.setHours(x.startHour, x.startMinute);
                 x.end = Object(date_fns__WEBPACK_IMPORTED_MODULE_2__["endOfDay"])(new Date(x.end));
@@ -2127,7 +2104,7 @@ UserDashboardComponent = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony default export */ __webpack_exports__["default"] = ("\r\n\r\n.sides{\r\n    border: 2px solid aqua;\r\n    margin-top: 8px;\r\n    border-radius: 10px;\r\n    width: 100%;\r\n    background-color: lightskyblue}\r\n\r\n    .logo{\r\n        border-radius: 100%;\r\n        height: 40px;\r\n        width: 40px;\r\n    }\r\n\r\n    .dash{\r\n        margin-left: 40px;\r\n    }\r\n\r\n    .blue{\r\n    background-color: #008CBA;\r\n    color: white\r\n}\r\n\r\n    .color{\r\n    width: 200px;\r\n    height:25px;\r\n    border: 1px solid rgb(0, 81, 128);\r\n    margin: 20px;\r\n}\r\n\r\n    @media screen and (min-width:768px){\r\n    .sides{\r\n        width: 50vw;\r\n    }\r\n}\r\n\r\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbInNyYy9hcHAvdXNlci1ldmVudC12aWV3L3VzZXItZXZlbnQtdmlldy5jb21wb25lbnQuY3NzIl0sIm5hbWVzIjpbXSwibWFwcGluZ3MiOiI7O0FBRUE7SUFDSSxzQkFBc0I7SUFDdEIsZUFBZTtJQUNmLG1CQUFtQjtJQUNuQixXQUFXO0lBQ1gsOEJBQThCOztJQUU5QjtRQUNJLG1CQUFtQjtRQUNuQixZQUFZO1FBQ1osV0FBVztJQUNmOztJQUNBO1FBQ0ksaUJBQWlCO0lBQ3JCOztJQUVKO0lBQ0kseUJBQXlCO0lBQ3pCO0FBQ0o7O0lBQ0E7SUFDSSxZQUFZO0lBQ1osV0FBVztJQUNYLGlDQUFpQztJQUNqQyxZQUFZO0FBQ2hCOztJQUdBO0lBQ0k7UUFDSSxXQUFXO0lBQ2Y7QUFDSiIsImZpbGUiOiJzcmMvYXBwL3VzZXItZXZlbnQtdmlldy91c2VyLWV2ZW50LXZpZXcuY29tcG9uZW50LmNzcyIsInNvdXJjZXNDb250ZW50IjpbIlxyXG5cclxuLnNpZGVze1xyXG4gICAgYm9yZGVyOiAycHggc29saWQgYXF1YTtcclxuICAgIG1hcmdpbi10b3A6IDhweDtcclxuICAgIGJvcmRlci1yYWRpdXM6IDEwcHg7XHJcbiAgICB3aWR0aDogMTAwJTtcclxuICAgIGJhY2tncm91bmQtY29sb3I6IGxpZ2h0c2t5Ymx1ZX1cclxuXHJcbiAgICAubG9nb3tcclxuICAgICAgICBib3JkZXItcmFkaXVzOiAxMDAlO1xyXG4gICAgICAgIGhlaWdodDogNDBweDtcclxuICAgICAgICB3aWR0aDogNDBweDtcclxuICAgIH1cclxuICAgIC5kYXNoe1xyXG4gICAgICAgIG1hcmdpbi1sZWZ0OiA0MHB4O1xyXG4gICAgfVxyXG4gICAgXHJcbi5ibHVle1xyXG4gICAgYmFja2dyb3VuZC1jb2xvcjogIzAwOENCQTtcclxuICAgIGNvbG9yOiB3aGl0ZVxyXG59XHJcbi5jb2xvcntcclxuICAgIHdpZHRoOiAyMDBweDtcclxuICAgIGhlaWdodDoyNXB4O1xyXG4gICAgYm9yZGVyOiAxcHggc29saWQgcmdiKDAsIDgxLCAxMjgpO1xyXG4gICAgbWFyZ2luOiAyMHB4O1xyXG59XHJcblxyXG5cclxuQG1lZGlhIHNjcmVlbiBhbmQgKG1pbi13aWR0aDo3NjhweCl7XHJcbiAgICAuc2lkZXN7XHJcbiAgICAgICAgd2lkdGg6IDUwdnc7XHJcbiAgICB9XHJcbn1cclxuIl19 */");
+/* harmony default export */ __webpack_exports__["default"] = ("\r\n\r\n.sides{\r\n    border: 2px solid aqua;\r\n    margin-top: 8px;\r\n    border-radius: 10px;\r\n    width: 100%;\r\n    background-color: lightskyblue}\r\n\r\n    .alarm{\r\n        background-color: lightgreen;\r\n        width: 300px;\r\n        border: 15px solid lightsalmon;\r\n        padding: 40px;\r\n        margin: 20px;\r\n        position: absolute;\r\n        z-index: 1;\r\n    }\r\n\r\n    .logo{\r\n        border-radius: 100%;\r\n        height: 40px;\r\n        width: 40px;\r\n    }\r\n\r\n    .dash{\r\n        margin-left: 40px;\r\n    }\r\n\r\n    .blue{\r\n    background-color: #008CBA;\r\n    color: white\r\n}\r\n\r\n    .color{\r\n    width: 200px;\r\n    height:25px;\r\n    border: 1px solid rgb(0, 81, 128);\r\n    margin: 20px;\r\n}\r\n\r\n    @media screen and (min-width:768px){\r\n    .sides{\r\n        width: 50vw;\r\n    }\r\n}\r\n\r\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbInNyYy9hcHAvdXNlci1ldmVudC12aWV3L3VzZXItZXZlbnQtdmlldy5jb21wb25lbnQuY3NzIl0sIm5hbWVzIjpbXSwibWFwcGluZ3MiOiI7O0FBRUE7SUFDSSxzQkFBc0I7SUFDdEIsZUFBZTtJQUNmLG1CQUFtQjtJQUNuQixXQUFXO0lBQ1gsOEJBQThCOztJQUU5QjtRQUNJLDRCQUE0QjtRQUM1QixZQUFZO1FBQ1osOEJBQThCO1FBQzlCLGFBQWE7UUFDYixZQUFZO1FBQ1osa0JBQWtCO1FBQ2xCLFVBQVU7SUFDZDs7SUFFQTtRQUNJLG1CQUFtQjtRQUNuQixZQUFZO1FBQ1osV0FBVztJQUNmOztJQUNBO1FBQ0ksaUJBQWlCO0lBQ3JCOztJQUVKO0lBQ0kseUJBQXlCO0lBQ3pCO0FBQ0o7O0lBQ0E7SUFDSSxZQUFZO0lBQ1osV0FBVztJQUNYLGlDQUFpQztJQUNqQyxZQUFZO0FBQ2hCOztJQUdBO0lBQ0k7UUFDSSxXQUFXO0lBQ2Y7QUFDSiIsImZpbGUiOiJzcmMvYXBwL3VzZXItZXZlbnQtdmlldy91c2VyLWV2ZW50LXZpZXcuY29tcG9uZW50LmNzcyIsInNvdXJjZXNDb250ZW50IjpbIlxyXG5cclxuLnNpZGVze1xyXG4gICAgYm9yZGVyOiAycHggc29saWQgYXF1YTtcclxuICAgIG1hcmdpbi10b3A6IDhweDtcclxuICAgIGJvcmRlci1yYWRpdXM6IDEwcHg7XHJcbiAgICB3aWR0aDogMTAwJTtcclxuICAgIGJhY2tncm91bmQtY29sb3I6IGxpZ2h0c2t5Ymx1ZX1cclxuXHJcbiAgICAuYWxhcm17XHJcbiAgICAgICAgYmFja2dyb3VuZC1jb2xvcjogbGlnaHRncmVlbjtcclxuICAgICAgICB3aWR0aDogMzAwcHg7XHJcbiAgICAgICAgYm9yZGVyOiAxNXB4IHNvbGlkIGxpZ2h0c2FsbW9uO1xyXG4gICAgICAgIHBhZGRpbmc6IDQwcHg7XHJcbiAgICAgICAgbWFyZ2luOiAyMHB4O1xyXG4gICAgICAgIHBvc2l0aW9uOiBhYnNvbHV0ZTtcclxuICAgICAgICB6LWluZGV4OiAxO1xyXG4gICAgfVxyXG5cclxuICAgIC5sb2dve1xyXG4gICAgICAgIGJvcmRlci1yYWRpdXM6IDEwMCU7XHJcbiAgICAgICAgaGVpZ2h0OiA0MHB4O1xyXG4gICAgICAgIHdpZHRoOiA0MHB4O1xyXG4gICAgfVxyXG4gICAgLmRhc2h7XHJcbiAgICAgICAgbWFyZ2luLWxlZnQ6IDQwcHg7XHJcbiAgICB9XHJcbiAgICBcclxuLmJsdWV7XHJcbiAgICBiYWNrZ3JvdW5kLWNvbG9yOiAjMDA4Q0JBO1xyXG4gICAgY29sb3I6IHdoaXRlXHJcbn1cclxuLmNvbG9ye1xyXG4gICAgd2lkdGg6IDIwMHB4O1xyXG4gICAgaGVpZ2h0OjI1cHg7XHJcbiAgICBib3JkZXI6IDFweCBzb2xpZCByZ2IoMCwgODEsIDEyOCk7XHJcbiAgICBtYXJnaW46IDIwcHg7XHJcbn1cclxuXHJcblxyXG5AbWVkaWEgc2NyZWVuIGFuZCAobWluLXdpZHRoOjc2OHB4KXtcclxuICAgIC5zaWRlc3tcclxuICAgICAgICB3aWR0aDogNTB2dztcclxuICAgIH1cclxufVxyXG4iXX0= */");
 
 /***/ }),
 
@@ -2191,32 +2168,38 @@ let UserEventViewComponent = class UserEventViewComponent {
     ngOnInit() {
         //socket function to notify about created event
         this.SocketService.createNotify().subscribe((data) => {
-            console.log(data);
             if (data.userId == ng2_cookies_ng2_cookies__WEBPACK_IMPORTED_MODULE_7__["Cookie"].get('userId')) {
                 this.toastr.success(`${data.adminName} has scheduled an event`);
             }
         });
         //socket function to notify about created event
         this.SocketService.editNotify().subscribe((data) => {
-            console.log(data);
             if (data.userId == ng2_cookies_ng2_cookies__WEBPACK_IMPORTED_MODULE_7__["Cookie"].get('userId')) {
                 this.toastr.success(`${data.adminName} has changed the scheduled event`);
             }
         });
         this.SocketService.deleteNotify().subscribe((data) => {
-            console.log(data);
             if (data.userId == ng2_cookies_ng2_cookies__WEBPACK_IMPORTED_MODULE_7__["Cookie"].get('userId')) {
                 this.toastr.success(`${data.adminName} has cancelled a scheduled event`);
             }
         });
         this.eventId = this.route.snapshot.paramMap.get('eventId');
         this.service.getSingleEvent(this.eventId).subscribe(data => {
-            console.log(data);
             let x = data['data'];
+            this.month = (new Date(x.start).getMonth());
+            this.day = (new Date(x.start).getDay());
             this.color = x.color;
             x.start = new Date(x.start);
             x.end = new Date(x.end);
-            console.log(x.endHour);
+            this.SocketService.alarm().subscribe((data) => {
+                if (data.min + 2 == x.startMinute && data.hours == x.startHour && data.month == this.month && data.day == this.day) {
+                    this.SocketService.alarmnotify(x.adminName, x.userId, x.title);
+                    this.html = false;
+                    setTimeout(() => {
+                        this.html = true;
+                    }, 10000);
+                }
+            });
             if (x.startHour > 12) {
                 this.startHour = (x.startHour - 12);
                 this.tpace = "PM";
@@ -2242,9 +2225,7 @@ let UserEventViewComponent = class UserEventViewComponent {
             var enddate = new Date(x.end), month = ("0" + (enddate.getMonth() + 1)).slice(-2), day = ("0" + enddate.getDate()).slice(-2);
             this.end = [day, month, enddate.getFullYear()].join("-");
             this.userId = x.userId;
-            console.log(x.start.getHours());
             this.event = data['data'];
-            console.log(this.event);
         });
     }
 };

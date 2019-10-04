@@ -23,7 +23,6 @@ public userName:string
     this.userName=Cookie.get('userName')
     this.service.allUser().subscribe(data=>{
       this.details=data['data']
-      console.log(this.details)
     })
   }
 //start of logout function

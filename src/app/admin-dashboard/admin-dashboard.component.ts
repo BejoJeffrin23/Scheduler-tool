@@ -83,18 +83,15 @@ public count: Number = 5;
     this.userName=Cookie.get('userName')
 
     this.userId = this._route.snapshot.paramMap.get('userId');
-    console.log(this.viewDate)
     this.service.getEvents(this.userId).subscribe( data => {
 
 
       for(let x of data['data']){
-      console.log(x)
       x.start=startOfDay(new Date(x.start))
       x.start.setHours(x.startHour,x.startMinute)
       x.end=endOfDay(new Date(x.end))
       x.end.setHours(x.endHour,x.endMinute)
 
-      console.log(x.end)
         x.color={primary:x.color}
         var startdate = new Date(x.start),
         month = ("0" + (startdate.getMonth() + 1)).slice(-2),

@@ -78,7 +78,6 @@ export class UserDashboardComponent implements OnInit {
 
     //socket function to notify about created event
     this.SocketService.createNotify().subscribe((data) => {
-      console.log(data)
       if (data.userId == Cookie.get('userId')) {
         this.toastr.success(`${data.adminName} has scheduled an event ${data.title}`)
       }
@@ -89,7 +88,6 @@ export class UserDashboardComponent implements OnInit {
     //socket function to notify about edited event
 
     this.SocketService.editNotify().subscribe((data) => {
-      console.log(data)
       if (data.userId == Cookie.get('userId')) {
         this.toastr.success(`${data.adminName} has changed the scheduled event ${data.title}`)
       }
@@ -100,7 +98,6 @@ export class UserDashboardComponent implements OnInit {
     //socket function to notify about deleted event
 
     this.SocketService.deleteNotify().subscribe((data) => {
-      console.log(data)
       if (data.userId == Cookie.get('userId')) {
         this.toastr.success(`${data.adminName} has cancelled a scheduled event ${data.title}`)
       }
@@ -113,7 +110,6 @@ export class UserDashboardComponent implements OnInit {
       for (let x of data.data) {
         this.month = (new Date(x.start).getMonth())
         this.day = (new Date(x.start).getDay())
-        console.log(this.month)
 
 
         x.start = startOfDay(new Date(x.start))

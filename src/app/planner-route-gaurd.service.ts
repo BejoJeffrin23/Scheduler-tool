@@ -11,7 +11,6 @@ export class PlannerRouteGaurdService  {
   constructor(private router:Router) { }
 
   canActivate(route: ActivatedRouteSnapshot): boolean {
-console.log("working dude")
 
     if (Cookie.get('authToken') === undefined || Cookie.get('authToken') === '' || Cookie.get('authToken') === null) {
 
