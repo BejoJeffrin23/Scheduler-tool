@@ -13,13 +13,13 @@
 
     <ul class="navbar-nav mr-auto">
 
-        <li class="nav-item">
+      <li class="nav-item">
 
-            <a class="nav-link dash" routerLink="/adminhome" style="color: black">
-              Dash board
-            </a>
-    
-          </li>
+        <a class="nav-link dash" routerLink="/adminhome" style="color: black">
+          Dash board
+        </a>
+
+      </li>
 
     </ul>
     <button class="btn btn-outline-success my-2 my-sm-0 blue" type="submit" (click)="logout()">LogOut</button>
@@ -32,7 +32,7 @@
 <br>
 <div>
   <marquee behavior="scroll" direction="left" scrollamount="7">
-    <h3>Welcome {{userName}} ...Plan the schedules</h3>
+    <h3>Welcome Admin <b class="name">{{userName}}</b>...Plan the schedules</h3>
   </marquee>
 </div>
 <br>
@@ -104,23 +104,24 @@
 
 <div class="table-responsive">
   <table class="table table-bordered">
-    <thead>
+    <thead style="background-color: lightblue">
       <tr>
-        <th class="font">Title</th>
-        <th class="font">Starts at</th>
-        <th class="font">Ends at</th>
+        <th class="font" style="text-align:center">Title</th>
+        <th class="font" style="text-align:center">Starts at</th>
+        <th class="font" style="text-align:center">Ends at</th>
       </tr>
     </thead>
 
     <tbody>
-      <tr *ngFor="let event of events| paginate: { itemsPerPage: count, currentPage: p }" class="hover">
-        <td class="font" routerLink="/{{event.eventId}}/edit">
+      <tr *ngFor="let event of events| paginate: { itemsPerPage: count, currentPage: p }" class="hover"
+        routerLink="/{{event.eventId}}/edit">
+        <td class="font" style="width: 26%;text-align: center">
           {{event.title}}
         </td>
-        <td class="font" routerLink="/{{event.eventId}}/edit">
+        <td class="font" style="width: 37%">
           {{event.start}}
         </td>
-        <td class="font" routerLink="/{{event.eventId}}/edit">
+        <td class="font" style="width: 37%">
           {{event.end}}
         </td>
       </tr>

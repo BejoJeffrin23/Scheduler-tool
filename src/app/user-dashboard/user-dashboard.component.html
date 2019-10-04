@@ -25,12 +25,12 @@
 
 <div *ngIf="html==false">
 
-    <div class="alarm">
-        The event/meeting is about to start
-        <br>
-        <button value="html==true">dismiss</button>
-        </div>
-   
+  <div class="alarm">
+    The event/meeting is about to start
+    <br>
+    <button value="html==true">dismiss</button>
+  </div>
+
 </div>
 
 <br>
@@ -103,7 +103,7 @@
 <div class="table-responsive">
   <table class="table table-bordered">
     <thead>
-      <tr>
+      <tr style="background-color: lightblue">
         <th class="font">Title</th>
         <th class="font">Starts at</th>
         <th class="font">Ends at</th>
@@ -113,13 +113,13 @@
     <tbody>
       <tr *ngFor="let event of events| paginate: { itemsPerPage: count, currentPage: p }"
         routerLink="/{{event.eventId}}/view" class="hover">
-        <td class="font">
+        <td class="font" style="width: 26%;text-align: center">
           {{event.title}}
         </td>
-        <td class="font">
+        <td class="font" style="width: 37%;text-align: center">
           <div>{{event.start}}</div>
         </td>
-        <td class="font">
+        <td class="font" style="width: 37%;text-align: center">
           {{event.end}}
         </td>
       </tr>

@@ -1,3 +1,10 @@
+@font-face{
+    font-family:"exodus-demo-striped";
+    src:url("../../../assets/font/ExodusDemo-Striped.otf") format("woff"),
+    url("../../../assets/font/ExodusDemo-Striped.otf") format("opentype"),
+    url("../../../assets/font/ExodusDemo-Striped.otf") format("truetype");
+}
+
 .sides{
     border: 2px solid aqua;
     margin-top: 12vh;
@@ -17,6 +24,8 @@
 }
 .head{
     background-color:purple;
+    border-radius: 12px;
+
 }
 
 

@@ -6,6 +6,7 @@
 }
 .page{overflow-y: scroll;
 overflow-x: hidden;
+background-color:lightsteelblue
 }
 .logo{
     border-radius: 100%;
@@ -13,7 +14,7 @@ overflow-x: hidden;
     width: 40px;
 }
 .hover :hover{
-    background-color: aqua
+    background-color:lightcyan;
 }
 
 .blue{

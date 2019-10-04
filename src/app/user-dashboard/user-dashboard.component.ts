@@ -68,7 +68,7 @@ export class UserDashboardComponent implements OnInit {
   public date = new Date().getMinutes()
   public month;
   public day;
-  public a=11;
+  public a = 11;
   constructor(public toastr: ToastrService, public SocketService: SocketService, public _route: ActivatedRoute, public router: Router, private modal: NgbModal, private service: MeetingService) { this.dateOrViewChanged(); }
 
 
@@ -111,8 +111,8 @@ export class UserDashboardComponent implements OnInit {
     this.userId = this._route.snapshot.paramMap.get('userId');
     this.service.getEvents(this.userId).subscribe(data => {
       for (let x of data.data) {
-        this.month=(new Date(x.start).getMonth())
-        this.day=(new Date(x.start).getDay())
+        this.month = (new Date(x.start).getMonth())
+        this.day = (new Date(x.start).getDay())
         console.log(this.month)
 
 
@@ -120,17 +120,18 @@ export class UserDashboardComponent implements OnInit {
         x.start.setHours(x.startHour, x.startMinute)
         x.end = endOfDay(new Date(x.end))
         x.end.setHours(x.endHour, x.endMinute)
-       
-        //
-        this.SocketService.alarm().subscribe((data) =>{ 
-          if(data.min+2==x.startMinute&&data.hours==x.startHour&&data.month==this.month&&data.day==this.day){
-        this.SocketService.alarmnotify(x.adminName,x.userId,x.title)
-             this.html = false;
-             setTimeout(() => {
-               this.html = true;
-             }, 10000)
 
-        }})
+        //
+        this.SocketService.alarm().subscribe((data) => {
+          if (data.min + 2 == x.startMinute && data.hours == x.startHour && data.month == this.month && data.day == this.day) {
+            this.SocketService.alarmnotify(x.adminName, x.userId, x.title)
+            this.html = false;
+            setTimeout(() => {
+              this.html = true;
+            }, 10000)
+
+          }
+        })
 
         let datam = { userId: this.userId, startHour: x.startHour, startMinute: x.startMinute }
         //

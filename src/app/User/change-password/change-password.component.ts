@@ -22,6 +22,8 @@ export class ChangePasswordComponent implements OnInit {
     this.userId = this._route.snapshot.paramMap.get('userId');
   }
 
+
+  //function to change the password
   public reset = () => {
     if (!this.password1) {
       this.toastr.warning('Enter the new password')
@@ -42,4 +44,5 @@ export class ChangePasswordComponent implements OnInit {
         })
     }
   }
+  //end of reset password function
 }

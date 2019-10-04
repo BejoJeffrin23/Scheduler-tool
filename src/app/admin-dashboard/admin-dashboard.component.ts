@@ -1,7 +1,6 @@
 import {
-  Component,ChangeDetectionStrategy,ViewChild,OnInit,TemplateRef} from '@angular/core';
+  Component,OnInit,TemplateRef} from '@angular/core';
 import {startOfDay,endOfDay,subDays,addDays,endOfMonth,isSameDay,isSameMonth,addHours} from 'date-fns';
-import { Subject } from 'rxjs';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { MeetingService } from '../meeting.service';
 import { ActivatedRoute, Router } from '@angular/router'

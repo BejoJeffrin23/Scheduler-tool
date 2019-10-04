@@ -26,7 +26,7 @@ public userName:string
       console.log(this.details)
     })
   }
-
+//start of logout function
   public logout = () => {
 
     this.service.logout().subscribe((apiResponse) => {

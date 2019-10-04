@@ -6,7 +6,7 @@
 
       <div class="col-sm p-5">
         <div class="head">
-          <h2 style="color: aqua;text-align: center">Scheduler</h2>
+          <h1 style="color: aqua;text-align: center;font-family:exodus-demo-striped;text-transform:none;">Scheduler</h1>
 
 
           <h1 style="text-align: center"><img src="assets/log.png" class="log"></h1>
@@ -85,7 +85,7 @@
         <label for="inputLastName" class="sr-only">Country</label>
 
         <select [(ngModel)]="isAdmin" name="isAdmin" id="isAdmin" class="form-control">
-          <option selected>Choose your account type</option>
+          <option selected [value]="'none'">Choose your account type</option>
           <option [ngValue]="false">User</option>
           <option [ngValue]="true">Admin</option>
         </select>
