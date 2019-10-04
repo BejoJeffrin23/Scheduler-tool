@@ -66,23 +66,15 @@ export class UserDashboardComponent implements OnInit {
   public userName: String;
   public html;
   public date = new Date().getMinutes()
+  public month;
+  public day;
+  public a=11;
   constructor(public toastr: ToastrService, public SocketService: SocketService, public _route: ActivatedRoute, public router: Router, private modal: NgbModal, private service: MeetingService) { this.dateOrViewChanged(); }
 
 
   ngOnInit() {
 
     this.userName = Cookie.get('userName')
-
-    this.SocketService.alarmNotify().subscribe((data) => {
-      if (data.userId == this.userId) {
-
-        this.toastr.success(`hii has edited his issue`)
-        this.html = false;
-        setTimeout(() => {
-          this.html = true;
-        }, 3000)
-      }
-    })
 
     //socket function to notify about created event
     this.SocketService.createNotify().subscribe((data) => {
@@ -94,7 +86,7 @@ export class UserDashboardComponent implements OnInit {
 
     })
 
-    //socket function to notify about created event
+    //socket function to notify about edited event
 
     this.SocketService.editNotify().subscribe((data) => {
       console.log(data)
@@ -103,6 +95,9 @@ export class UserDashboardComponent implements OnInit {
       }
 
     })
+
+
+    //socket function to notify about deleted event
 
     this.SocketService.deleteNotify().subscribe((data) => {
       console.log(data)
@@ -116,13 +111,28 @@ export class UserDashboardComponent implements OnInit {
     this.userId = this._route.snapshot.paramMap.get('userId');
     this.service.getEvents(this.userId).subscribe(data => {
       for (let x of data.data) {
+        this.month=(new Date(x.start).getMonth())
+        this.day=(new Date(x.start).getDay())
+        console.log(this.month)
+
+
         x.start = startOfDay(new Date(x.start))
         x.start.setHours(x.startHour, x.startMinute)
         x.end = endOfDay(new Date(x.end))
         x.end.setHours(x.endHour, x.endMinute)
+       
         //
+        this.SocketService.alarm().subscribe((data) =>{ 
+          if(data.min+2==x.startMinute&&data.hours==x.startHour&&data.month==this.month&&data.day==this.day){
+        this.SocketService.alarmnotify(x.adminName,x.userId,x.title)
+             this.html = false;
+             setTimeout(() => {
+               this.html = true;
+             }, 10000)
+
+        }})
+
         let datam = { userId: this.userId, startHour: x.startHour, startMinute: x.startMinute }
-        this.SocketService.alarm(datam)
         //
         x.color = { primary: x.color }
         var startdate = new Date(x.start),
@@ -243,7 +253,8 @@ export class UserDashboardComponent implements OnInit {
         this.SocketService.exitSocket()
         Cookie.delete('authToken');
         Cookie.delete('userName');
-        Cookie.delete('userId')
+        Cookie.delete('userId');
+        Cookie.delete('io')
         this.router.navigate(['/login']);
 
       } else {

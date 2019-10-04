@@ -67,9 +67,7 @@ export class EditEventComponent implements OnInit {
 
    console.log(this.event)
     this.service.edit(this.event, this.event.eventId).subscribe(data => { 
-      console.log(data)
       this.SocketService.eventEdited(Cookie.get('userName'),this.userId,this.title)
-      this.toastr.success('blog posted', 'Success')
       this.appRouter.navigate([`${this.userId}/admindash`])
       //socket function to emit edit event
       setTimeout(() => {
@@ -108,6 +106,8 @@ export class EditEventComponent implements OnInit {
 this.service.delete(eventId).subscribe(data=>{
   this.SocketService.eventdeleted(Cookie.get('userName'),this.userId,this.title)
   console.log(data)
+  this.toastr.success('Event deleted', 'Success')
+
 })
   }
 }

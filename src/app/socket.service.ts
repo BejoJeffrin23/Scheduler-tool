@@ -9,8 +9,8 @@ import { Observable } from 'rxjs';
 })
 export class SocketService {
 
-  private url ="http://13.234.217.245:4001"
-  //'http://localhost:4001';
+ //private url ="http://13.234.217.245:4001"
+  private url='http://localhost:4001';
 public socket;
 
 
@@ -78,16 +78,19 @@ public socket;
         })
         }
         
-        public alarm=(data)=>{
-          this.socket.emit('alarm',data)
-        }
+        //public alarm=(data)=>{
+       //   this.socket.emit('alarm',data)
+       // }
 
-        public alarmNotify=()=>{
+        public alarm=()=>{
           return Observable.create((observer)=>{
-            this.socket.on('alarm-notification',(data)=>{
+            this.socket.on('alarm',(data)=>{
               observer.next(data)
             })
           })
+          }
+       public alarmnotify=(Adminname,userId,title)=>{
+            this.socket.emit('alarm-notify',Adminname,userId,title)
           }
         
       }

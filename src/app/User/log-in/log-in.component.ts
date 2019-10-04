@@ -74,7 +74,6 @@ export class LogInComponent implements OnInit {
               this.router.navigate([`/adminhome`])
             }
 
-
           } else {
 
             this.toastr.error(apiResponse.message)

@@ -20,3 +20,13 @@ overflow-x: hidden;
     background-color: #008CBA;
     color: white
 }
+
+.alarm{
+    background-color: lightgreen;
+    width: 300px;
+    border: 15px solid lightsalmon;
+    padding: 40px;
+    margin: 20px;
+    position: absolute;
+    z-index: 1;
+}
