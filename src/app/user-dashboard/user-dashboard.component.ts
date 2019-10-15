@@ -119,12 +119,13 @@ export class UserDashboardComponent implements OnInit {
 
         //
         this.SocketService.alarm().subscribe((data) => {
+          if (data.userId == Cookie.get('userId')) {
             this.html = false;
             setTimeout(() => {
               this.html = true;
             }, 10000)
 
-          
+          }
         })
 
         let datam = { userId: this.userId, startHour: x.startHour, startMinute: x.startMinute }

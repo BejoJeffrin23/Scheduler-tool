@@ -77,11 +77,12 @@ export class UserEventViewComponent implements OnInit {
      
 
       this.SocketService.alarm().subscribe((data) => {
+        if (data.userId == Cookie.get('userId')) {
         this.html = false;
         setTimeout(() => {
           this.html = true;
         }, 10000)
-
+      }
       
     })
 

@@ -2000,10 +2000,12 @@ let UserDashboardComponent = class UserDashboardComponent {
                 x.end.setHours(x.endHour, x.endMinute);
                 //
                 this.SocketService.alarm().subscribe((data) => {
-                    this.html = false;
-                    setTimeout(() => {
-                        this.html = true;
-                    }, 10000);
+                    if (data.userId == ng2_cookies_ng2_cookies__WEBPACK_IMPORTED_MODULE_9__["Cookie"].get('userId')) {
+                        this.html = false;
+                        setTimeout(() => {
+                            this.html = true;
+                        }, 10000);
+                    }
                 });
                 let datam = { userId: this.userId, startHour: x.startHour, startMinute: x.startMinute };
                 //
@@ -2186,10 +2188,12 @@ let UserEventViewComponent = class UserEventViewComponent {
             x.start = new Date(x.start);
             x.end = new Date(x.end);
             this.SocketService.alarm().subscribe((data) => {
-                this.html = false;
-                setTimeout(() => {
-                    this.html = true;
-                }, 10000);
+                if (data.userId == ng2_cookies_ng2_cookies__WEBPACK_IMPORTED_MODULE_7__["Cookie"].get('userId')) {
+                    this.html = false;
+                    setTimeout(() => {
+                        this.html = true;
+                    }, 10000);
+                }
             });
             if (x.startHour > 12) {
                 this.startHour = (x.startHour - 12);
