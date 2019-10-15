@@ -90,8 +90,7 @@ public socket;
             })
           })
           }
-       public alarmnotify=(Adminname,userId,title)=>{
-            this.socket.emit('alarm-notify',Adminname,userId,title)
-          }
+      
         
+
       }

@@ -1838,9 +1838,6 @@ let SocketService = class SocketService {
                 });
             });
         };
-        this.alarmnotify = (Adminname, userId, title) => {
-            this.socket.emit('alarm-notify', Adminname, userId, title);
-        };
         this.socket = socket_io_client__WEBPACK_IMPORTED_MODULE_2__(this.url);
     }
 };
@@ -2003,13 +2000,10 @@ let UserDashboardComponent = class UserDashboardComponent {
                 x.end.setHours(x.endHour, x.endMinute);
                 //
                 this.SocketService.alarm().subscribe((data) => {
-                    if (data.min + 2 == x.startMinute && data.hours == x.startHour && data.month == this.month && data.day == this.day) {
-                        this.SocketService.alarmnotify(x.adminName, x.userId, x.title);
-                        this.html = false;
-                        setTimeout(() => {
-                            this.html = true;
-                        }, 10000);
-                    }
+                    this.html = false;
+                    setTimeout(() => {
+                        this.html = true;
+                    }, 10000);
                 });
                 let datam = { userId: this.userId, startHour: x.startHour, startMinute: x.startMinute };
                 //
@@ -2192,13 +2186,10 @@ let UserEventViewComponent = class UserEventViewComponent {
             x.start = new Date(x.start);
             x.end = new Date(x.end);
             this.SocketService.alarm().subscribe((data) => {
-                if (data.min + 2 == x.startMinute && data.hours == x.startHour && data.month == this.month && data.day == this.day) {
-                    this.SocketService.alarmnotify(x.adminName, x.userId, x.title);
-                    this.html = false;
-                    setTimeout(() => {
-                        this.html = true;
-                    }, 10000);
-                }
+                this.html = false;
+                setTimeout(() => {
+                    this.html = true;
+                }, 10000);
             });
             if (x.startHour > 12) {
                 this.startHour = (x.startHour - 12);

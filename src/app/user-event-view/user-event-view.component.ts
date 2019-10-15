@@ -74,16 +74,18 @@ export class UserEventViewComponent implements OnInit {
       this.color=x.color
       x.start=new Date(x.start)
       x.end=new Date(x.end);
-      this.SocketService.alarm().subscribe((data) => {
-        if (data.min + 2 == x.startMinute && data.hours == x.startHour && data.month == this.month && data.day == this.day) {
-          this.SocketService.alarmnotify(x.adminName, x.userId, x.title)
-          this.html = false;
-          setTimeout(() => {
-            this.html = true;
-          }, 10000)
+     
 
-        }
-      })
+      this.SocketService.alarm().subscribe((data) => {
+        this.html = false;
+        setTimeout(() => {
+          this.html = true;
+        }, 10000)
+
+      
+    })
+
+
       if(x.startHour>12){this.startHour=(x.startHour-12);this.tpace="PM"}
       else {this.startHour=x.startHour;this.tpace="AM"};
       this.startMinute=x.startMinute;

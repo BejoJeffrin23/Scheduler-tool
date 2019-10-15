@@ -119,14 +119,12 @@ export class UserDashboardComponent implements OnInit {
 
         //
         this.SocketService.alarm().subscribe((data) => {
-          if (data.min + 2 == x.startMinute && data.hours == x.startHour && data.month == this.month && data.day == this.day) {
-            this.SocketService.alarmnotify(x.adminName, x.userId, x.title)
             this.html = false;
             setTimeout(() => {
               this.html = true;
             }, 10000)
 
-          }
+          
         })
 
         let datam = { userId: this.userId, startHour: x.startHour, startMinute: x.startMinute }
